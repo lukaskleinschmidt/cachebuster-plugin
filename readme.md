@@ -28,7 +28,7 @@ htaccess file:
 
 ```
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.+)\.(\d+)\.(js|css)$ $1.$3 [L]
+RewriteRule ^(.+)\.(\d+)\.(js|css)(.*)$ $1$4 [L]
 ```
 
 Place them directly after the RewriteBase definition.
@@ -40,7 +40,7 @@ For Nginx you can add the following to your virtual host setup:
 ```
 location /assets {
   if (!-e $request_filename) {
-    rewrite ^/(.+)\.(\d+)\.(js|css)$ /$1.$3 break;
+    rewrite ^/(.+)\.(\d+)\.(js|css)(.*)$ /$1$4 break;
   }
 }
 ```
